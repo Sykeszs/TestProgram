@@ -4,27 +4,17 @@ import logo from '../assets/image/logo.png';
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollToSection = (event, sectionId) => {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
-  const scrollToSection = (id) => {
-    if (isScrolling) return;
-
-    const element = document.getElementById(id);
-    if (element) {
-      setIsScrolling(true);
-      setIsDropdownOpen(false);
-      element.scrollIntoView({ behavior: 'smooth' });
-
-      setTimeout(() => {
-        setIsScrolling(false);
-      }, 1000);
-    }
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -99,32 +89,40 @@ const Header = () => {
           isDropdownOpen ? 'block opacity-100 translate-y-0' : 'hidden opacity-0 translate-y-4'
         } absolute top-full right-0 mt-2 bg-[#4528B6] rounded-md shadow-lg w-full sm:w-4/5 sm:mr-32 md:w-4/5 md:mr-12 lg:w-4/5 lg:mr-16 transform transition-all duration-300 ease-in-out`}
       >
-        <a onClick={() => scrollToSection('casestudies')} className="block px-4 py-2 text-sm text-white cursor-pointer">
-          Case Studies
+        <a href="#casestudies"
+            onClick={(e) => scrollToSection(e, 'casestudies')} className="block px-4 py-2 text-sm text-white cursor-pointer">
+          Case Studies 
         </a>
-        <a onClick={() => scrollToSection('whatwedo')} className="block px-4 py-2 text-sm text-white cursor-pointer">
+        <a href="#whatwedo"
+            onClick={(e) => scrollToSection(e, 'whatwedo')} className="block px-4 py-2 text-sm text-white cursor-pointer">
           What We Do
         </a>
-        <a onClick={() => scrollToSection('ourprocess')} className="block px-4 py-2 text-sm text-white cursor-pointer">
+        <a href="#ourprocess"
+            onClick={(e) => scrollToSection(e, 'ourprocess')} className="block px-4 py-2 text-sm text-white cursor-pointer">
           Our Process
         </a>
-        <a onClick={() => scrollToSection('FAQ')} className="block px-4 py-2 text-sm text-white cursor-pointer">
+        <a href="#FAQ"
+            onClick={(e) => scrollToSection(e, 'FAQ')} className="block px-4 py-2 text-sm text-white cursor-pointer">
           FAQ
         </a>
       </div>
 
       {/* Navbar */}
       <div className="hidden xl:flex xl:w-[1000px]">
-        <a onClick={() => scrollToSection('casestudies')} className="px-3 py-2 text-sm font-medium text-black cursor-pointer">
+        <a href="#casestudies"
+            onClick={(e) => scrollToSection(e, 'casestudies')} className="px-3 py-2 text-sm font-medium text-black cursor-pointer">
           Case Studies
         </a>
-        <a onClick={() => scrollToSection('whatwedo')} className="px-3 py-2 text-sm font-medium text-black cursor-pointer">
+        <a href="#whatwedo"
+            onClick={(e) => scrollToSection(e, 'whatwedo')} className="px-3 py-2 text-sm font-medium text-black cursor-pointer">
           What We Do
         </a>
-        <a onClick={() => scrollToSection('ourprocess')} className="px-3 py-2 text-sm font-medium text-black cursor-pointer">
+        <a href="#ourprocess"
+            onClick={(e) => scrollToSection(e, 'ourprocess')} className="px-3 py-2 text-sm font-medium text-black cursor-pointer">
           Our Process
         </a>
-        <a onClick={() => scrollToSection('FAQ')} className="px-3 py-2 text-sm font-medium text-black cursor-pointer">
+        <a href="#FAQ"
+            onClick={(e) => scrollToSection(e, 'FAQ')} className="px-3 py-2 text-sm font-medium text-black cursor-pointer">
           FAQ
         </a>
       </div>
